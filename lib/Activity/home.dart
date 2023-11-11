@@ -11,19 +11,18 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
-  void getData() async
-  {
-
-    Response response =  await get('https://mytimeapi.herokuapp.com/time/Asia/Kolkata' as Uri);
+  void getData() async {
+    Response response = await get(
+        "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=d52ff08ee596defc32ab49ab298fd836"
+            as Uri);
     Map data = jsonDecode(response.body);
-    print(data);
+    List Weather_data = data['weather'];
+    Map weather_main_data = Weather_data[0];
+    print(Weather_data);
+    print(weather_main_data['main']);
   }
 
-
-
-
-int counter =1;
+  int counter = 1;
   @override
   void initState() {
     super.initState();
@@ -37,6 +36,7 @@ int counter =1;
     super.setState(fn);
     print("this is set state");
   }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -47,22 +47,18 @@ int counter =1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(" Home Acitivity"),
-      ),
-      body:
-          Column(
-            children: <Widget>[
-              FloatingActionButton(
-                onPressed: () =>setState(() {
-                  counter +=1;
-                }),
-              ),
-              Text("$counter"),
-            ],
-          )
-
-
-    );
+        appBar: AppBar(
+          title: Text(" Home Acitivity"),
+        ),
+        body: Column(
+          children: <Widget>[
+            FloatingActionButton(
+              onPressed: () => setState(() {
+                counter += 1;
+              }),
+            ),
+            Text("$counter"),
+          ],
+        ));
   }
 }
