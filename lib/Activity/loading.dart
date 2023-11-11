@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/Worker/worker.dart';
 
 class Loading extends StatefulWidget {
   const Loading({super.key});
@@ -8,6 +9,25 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+
+  //String Temperature = "Loading";
+
+  void startApp() async {
+    worker instance = worker(location: "Bhopal");
+    await instance.getData();
+
+    print(instance.air_speed);
+    print(instance.description);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    startApp();
+    super.initState();
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

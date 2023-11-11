@@ -11,22 +11,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  void getData() async {
-    Response response = await get(
-        "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=d52ff08ee596defc32ab49ab298fd836"
-            as Uri);
-    Map data = jsonDecode(response.body);
-    List Weather_data = data['weather'];
-    Map weather_main_data = Weather_data[0];
-    print(Weather_data);
-    print(weather_main_data['main']);
-  }
 
-  int counter = 1;
   @override
   void initState() {
     super.initState();
-    getData();
+
     print("this is a init state");
   }
 
@@ -52,12 +41,8 @@ class _HomeState extends State<Home> {
         ),
         body: Column(
           children: <Widget>[
-            FloatingActionButton(
-              onPressed: () => setState(() {
-                counter += 1;
-              }),
-            ),
-            Text("$counter"),
+            FloatingActionButton(onPressed: () => () {}),
+            Text("kuch nahi "),
           ],
         ));
   }
